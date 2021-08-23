@@ -1,13 +1,11 @@
 package com.bookstore.app
 
+import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
-import org.springframework.context.annotation.Configuration
 
 @SpringBootApplication
-@Configuration
-open class BookstoreApplication
+class BookstoreApplication
 
 fun main(args: Array<String>) {
-	runApplication<BookstoreApplication>(*args)
+	SpringApplication.run(BookstoreApplication::class.java, *args)
 }

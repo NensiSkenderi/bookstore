@@ -2,23 +2,23 @@ package com.bookstore.app.entity
 
 import javax.persistence.*
 
-
+@Entity
 @Table(name = "book")
 data class Book(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    var id: Int,
+    val id: Int = 0,
 
     @Column(name = "name")
-    var name: String,
+    val name: String = "",
 
     @Column(name = "number_of_pages")
-    var numberOfPages: Int,
+    val numberOfPages: Int = 0,
 
     @Column(name = "quantity")
-    var quantity: Int,
+    val quantity: Int = 0,
 
     @Column(name = "price")
-    var price: Double
+    val price: Double = 0.0
 )
