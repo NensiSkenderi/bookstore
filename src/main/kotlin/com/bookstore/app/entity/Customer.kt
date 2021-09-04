@@ -22,33 +22,3 @@ data class Customer (
     @Column(name = "email")
     val email: String = ""
 )
-
-@Entity
-class OrderEntity(
-    var firstName: String = "",
-    var lastName: String = ""
-) {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long = 0
-
-    @OneToMany(cascade = [(CascadeType.ALL)], fetch = FetchType.LAZY, mappedBy = "order")
-    private val _lineItems = mutableListOf<LineItem>()
-
-    val lineItems get() = _lineItems.toList()
-
-    fun addLineItem(newItem: LineItem) {
-        _lineItems += newItem // ".this" can be omitted too
-    }
-}
-
-@Entity
-class LineItem(
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "order_id")
-    val order: OrderEntity? = null
-){
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long = 0
-}
