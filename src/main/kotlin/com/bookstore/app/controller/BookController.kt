@@ -1,7 +1,6 @@
 package com.bookstore.app.controller
 
-import com.bookstore.app.dto.dao.BookDto
-import com.bookstore.app.entity.Book
+import com.bookstore.app.dto.BookDto
 import com.bookstore.app.service.BookService
 import io.swagger.annotations.Api
 import org.springframework.beans.factory.annotation.Autowired
@@ -28,5 +27,10 @@ class BookController {
     @PostMapping("books")
     fun addBook(@RequestBody @Valid bookDto: BookDto): String {
         return bookService.addBook(bookDto)
+    }
+
+    @DeleteMapping("books/{id}")
+    fun deleteBook(@PathVariable id: Int): String {
+        return bookService.deleteBookById(id)
     }
 }

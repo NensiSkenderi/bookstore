@@ -1,4 +1,4 @@
-package com.bookstore.app.dto.dao
+package com.bookstore.app.dto
 
 import lombok.AllArgsConstructor
 import lombok.Data
