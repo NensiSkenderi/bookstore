@@ -1,12 +1,17 @@
 package com.bookstore.app.dto.dao
 
+import lombok.AllArgsConstructor
 import lombok.Data
+import lombok.NoArgsConstructor
 
 @Data
-class BookDto (
-    private val id: Int,
-    private val name: String,
-    private val numberOfPages: Int,
-    private val quantity: Int,
-    private val price: Double
+@AllArgsConstructor
+data class BookDto (
+    val id: Int,
+    val name: String,
+    val numberOfPages: Int,
+    val quantity: Int,
+    val price: Double
 )
+
+
