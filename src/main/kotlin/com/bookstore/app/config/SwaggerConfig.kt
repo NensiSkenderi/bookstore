@@ -2,6 +2,7 @@ package com.bookstore.app.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import springfox.documentation.builders.ApiInfoBuilder
 import springfox.documentation.builders.PathSelectors.any
 import springfox.documentation.builders.RequestHandlerSelectors
 import springfox.documentation.service.ApiInfo
@@ -16,25 +17,24 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2
 class SwaggerConfig {
 
     @Bean
-    fun productApi(): Docket {
+    fun api(): Docket {
         return Docket(DocumentationType.SWAGGER_2)
             .select()
             .apis(RequestHandlerSelectors.any())
             .paths(any())
             .build()
-            .apiInfo(metaData())
+            .apiInfo(getApiInfo())
     }
 
-    private fun metaData(): ApiInfo {
-        return ApiInfo(
-            "Spring Boot REST API",
-            "Spring Boot REST API for Bookstore",
-            "1.0",
-            "Terms of service",
-            Contact("Nensi Skenderi", "https://github.com/NensiSkenderi",
-                "nensiskenderi15@gmail.com").toString(),
-            "Apache License Version 2.0",
-            "https://www.apache.org/licenses/LICENSE-2.0"
-        )
+    private fun getApiInfo(): ApiInfo {
+        val contact = Contact("Nensi Skenderi", "https://github.com/NensiSkenderi", "nensiskenderi15@gmail.com")
+        return ApiInfoBuilder()
+            .title("Bookstore Rest Api")
+            .description("Bookstore Api Definition")
+            .version("1.0.0")
+            .license("Apache 2.0")
+            .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0")
+            .contact(contact)
+            .build()
     }
 }

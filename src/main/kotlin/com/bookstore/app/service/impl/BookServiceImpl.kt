@@ -32,6 +32,14 @@ class BookServiceImpl() : BookService {
         price = price
     )
 
+    fun BookDto.toBookEntity() = Book(
+        id = id,
+        name = name,
+        numberOfPages = numberOfPages,
+        quantity = quantity,
+        price = price
+    )
+
 
     override fun getBookById(bookId: Int): BookDto {
         val book = bookRepository.findById(bookId).get()
@@ -43,5 +51,11 @@ class BookServiceImpl() : BookService {
 //            quantity = book.quantity
 //        )
         return book.toBookDto()
+    }
+
+    override fun addBook(bookDto: BookDto): String {
+        val book = bookDto.toBookEntity()
+        bookRepository.save(book)
+        return "Book Saved!"
     }
 }
