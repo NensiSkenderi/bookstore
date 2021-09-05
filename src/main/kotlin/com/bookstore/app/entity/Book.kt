@@ -8,17 +8,17 @@ data class Book(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    val id: Int = 0,
+    val id: Int,
 
     @Column(name = "name")
-    val name: String = "",
+    val name: String,
 
     @Column(name = "number_of_pages")
-    val numberOfPages: Int = 0,
+    val numberOfPages: Int,
 
     @Column(name = "quantity")
-    val quantity: Int = 0,
+    val quantity: Int,
 
     @Column(name = "price")
-    val price: Double = 0.0
+    val price: Double
 )
