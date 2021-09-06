@@ -9,8 +9,9 @@ A backend bookstore application developed in Kotlin and Spring Boot
   * Kotlin
   * Spring Boot
   * JPA Hibernate
-  * Spring Security
+  * Spring Security OAuth2
   * Swagger
+  * MySQL
 
 ## Contact 
 Nensi Skenderi - nensiskenderi20@gmail.com
