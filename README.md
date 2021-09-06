@@ -9,6 +9,7 @@ A backend bookstore application developed in Kotlin and Spring Boot
   * Kotlin
   * Spring Boot
   * JPA Hibernate
+  * Rest API
   * Spring Security OAuth2
   * Swagger
   * MySQL
