@@ -25,10 +25,19 @@ data class Book(
     val quantity: Int,
 
     @Column(name = "price")
-    val price: Double
+    val price: Double,
+
+    @ManyToOne
+    @JoinColumn(name="book_category_id")
+    val category: BookCategory,
+
+    @ManyToOne
+    @JoinColumn(name="author_id")
+    val author: Author
 
 ) {
-    constructor() : this(0,"", 0, 0, 0.0) {
+    constructor() : this(0,"", 0, 0, 0.0,
+        BookCategory(), Author()) {
         //this is an empty constructor
     }
 }
