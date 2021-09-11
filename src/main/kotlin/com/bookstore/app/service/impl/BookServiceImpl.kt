@@ -52,7 +52,7 @@ class BookServiceImpl() : BookService {
         quantity = quantity,
         price = price,
         category = category,
-        author = AuthorDto()
+        author = AuthorDto() //check this because it misses data
     )
 
     fun BookDto.toBookEntity() = Book(
