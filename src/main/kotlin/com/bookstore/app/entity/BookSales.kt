@@ -15,5 +15,5 @@ data class BookSales(
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "order_id")
-    val order: Customer? = null
+    val order: User? = null
 )

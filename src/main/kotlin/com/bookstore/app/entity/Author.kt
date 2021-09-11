@@ -1,13 +1,13 @@
 package com.bookstore.app.entity
 
 import lombok.AllArgsConstructor
+import lombok.Data
 import lombok.NoArgsConstructor
 import javax.persistence.*
 
 @Entity
 @Table(name = "author")
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 data class Author(
 
     @Id

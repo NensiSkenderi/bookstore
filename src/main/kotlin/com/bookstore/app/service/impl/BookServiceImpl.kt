@@ -1,6 +1,8 @@
 package com.bookstore.app.service.impl
 
+import com.bookstore.app.dto.AuthorDto
 import com.bookstore.app.dto.BookDto
+import com.bookstore.app.entity.Author
 import com.bookstore.app.entity.Book
 import com.bookstore.app.repository.BookRepository
 import com.bookstore.app.service.BookService
@@ -22,22 +24,6 @@ class BookServiceImpl() : BookService {
         return bookDtoList
     }
 
-    fun Book.toBookDto() = BookDto(
-        id = id,
-        name = name,
-        numberOfPages = numberOfPages,
-        quantity = quantity,
-        price = price
-    )
-
-    fun BookDto.toBookEntity() = Book(
-        id = id,
-        name = name,
-        numberOfPages = numberOfPages,
-        quantity = quantity,
-        price = price
-    )
-
     override fun getBookById(bookId: Int): BookDto {
         val book = bookRepository.findById(bookId).get()
         return book.toBookDto()
@@ -46,7 +32,7 @@ class BookServiceImpl() : BookService {
     override fun addBook(bookDto: BookDto): String {
         val book = bookDto.toBookEntity()
         bookRepository.save(book)
-        return "Book Saved!"
+        return "Book added successfully!"
     }
 
     override fun deleteBookById(bookId: Int): String {
@@ -58,4 +44,24 @@ class BookServiceImpl() : BookService {
         else
             "Book does not exists!"
     }
+
+    fun Book.toBookDto() = BookDto(
+        id = id,
+        name = name,
+        numberOfPages = numberOfPages,
+        quantity = quantity,
+        price = price,
+        category = category,
+        author = AuthorDto()
+    )
+
+    fun BookDto.toBookEntity() = Book(
+        id = id,
+        name = name,
+        numberOfPages = numberOfPages,
+        quantity = quantity,
+        price = price,
+        category = category,
+        author = Author()
+    )
 }
