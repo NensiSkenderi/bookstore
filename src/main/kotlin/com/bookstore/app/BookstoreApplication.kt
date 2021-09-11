@@ -7,5 +7,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 class BookstoreApplication
 
 fun main(args: Array<String>) {
-	SpringApplication.run(BookstoreApplication::class.java, *args)
+    SpringApplication.run(BookstoreApplication::class.java, *args)
 }

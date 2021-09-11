@@ -33,4 +33,3 @@ data class User(
     @Column(name = "created_at")
     val createdAt: LocalDate = LocalDate.now()
 )
-

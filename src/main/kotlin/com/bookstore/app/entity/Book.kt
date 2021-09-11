@@ -9,7 +9,7 @@ import javax.persistence.*
 @AllArgsConstructor
 @NoArgsConstructor
 data class Book(
-    //A bean always requires a default constructor
+    // A bean always requires a default constructor
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -28,16 +28,18 @@ data class Book(
     val price: Double,
 
     @ManyToOne
-    @JoinColumn(name="book_category_id")
+    @JoinColumn(name = "book_category_id")
     val category: BookCategory,
 
     @ManyToOne
-    @JoinColumn(name="author_id")
+    @JoinColumn(name = "author_id")
     val author: Author
 
 ) {
-    constructor() : this(0,"", 0, 0, 0.0,
-        BookCategory(), Author()) {
-        //this is an empty constructor
+    constructor() : this(
+        0, "", 0, 0, 0.0,
+        BookCategory(), Author()
+    ) {
+        // this is an empty constructor
     }
 }

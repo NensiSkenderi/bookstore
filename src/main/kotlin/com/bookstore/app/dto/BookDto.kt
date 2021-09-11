@@ -8,7 +8,7 @@ import lombok.Data
 
 @Data
 @AllArgsConstructor
-data class BookDto (
+data class BookDto(
     val id: Int,
     val name: String,
     @JsonProperty("page_number")
@@ -19,5 +19,3 @@ data class BookDto (
     val category: BookCategory,
     val author: AuthorDto
 )
-
-

@@ -1,6 +1,5 @@
 package com.bookstore.app.dto
 
-import com.bookstore.app.entity.Book
 import lombok.AllArgsConstructor
 import lombok.Data
 
@@ -12,5 +11,5 @@ data class AuthorDto(
     val lastName: String,
     val book: List<BookDto> = listOf()
 ) {
-    constructor(): this(0,"", "")
+    constructor() : this(0, "", "")
 }

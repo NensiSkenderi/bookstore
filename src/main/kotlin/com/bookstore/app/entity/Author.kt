@@ -1,8 +1,6 @@
 package com.bookstore.app.entity
 
-import lombok.AllArgsConstructor
 import lombok.Data
-import lombok.NoArgsConstructor
 import javax.persistence.*
 
 @Entity
@@ -25,7 +23,7 @@ data class Author(
     val book: List<Book> = listOf()
 
 ) {
-    fun getFullName(): String{
+    fun getFullName(): String {
         return "$firstName $lastName"
     }
 }

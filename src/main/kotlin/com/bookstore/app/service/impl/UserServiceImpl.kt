@@ -24,7 +24,6 @@ class UserServiceImpl() : UserService {
         val user = userDto.toUserEntity()
         userRepository.save(user)
         return "User added successfully!"
-
     }
 
     override fun deleteUserById(userId: Int): String {

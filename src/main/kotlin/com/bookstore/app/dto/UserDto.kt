@@ -3,14 +3,12 @@ package com.bookstore.app.dto
 import com.fasterxml.jackson.annotation.JsonFormat
 import lombok.AllArgsConstructor
 import lombok.Data
-import lombok.NoArgsConstructor
-import java.sql.Timestamp
 import java.time.LocalDate
 import java.util.*
 
 @Data
 @AllArgsConstructor
-data class UserDto (
+data class UserDto(
     val id: Int,
     val username: String,
     val firstName: String,
@@ -21,5 +19,3 @@ data class UserDto (
     @field:JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM")
     val createdAt: LocalDate = LocalDate.now()
 )
-
-

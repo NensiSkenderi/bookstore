@@ -20,7 +20,6 @@ data class BookCategory(
 
     @OneToMany(mappedBy = "category")
     val book: List<Book> = listOf()
-)
-{
-    constructor(): this(0,"")
+) {
+    constructor() : this(0, "")
 }

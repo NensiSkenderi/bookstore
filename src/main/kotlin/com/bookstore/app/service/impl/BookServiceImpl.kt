@@ -40,8 +40,7 @@ class BookServiceImpl() : BookService {
         return if (exists) {
             bookRepository.deleteById(bookId)
             "Book deleted successfully!"
-        }
-        else
+        } else
             "Book does not exists!"
     }
 
@@ -52,7 +51,7 @@ class BookServiceImpl() : BookService {
         quantity = quantity,
         price = price,
         category = category,
-        author = AuthorDto() //check this because it misses data
+        author = AuthorDto() // check this because it misses data
     )
 
     fun BookDto.toBookEntity() = Book(
