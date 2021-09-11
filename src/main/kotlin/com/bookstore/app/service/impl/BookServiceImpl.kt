@@ -1,9 +1,8 @@
 package com.bookstore.app.service.impl
 
-import com.bookstore.app.dto.AuthorDto
 import com.bookstore.app.dto.BookDto
-import com.bookstore.app.entity.Author
 import com.bookstore.app.entity.Book
+import com.bookstore.app.mappers.BookMapper
 import com.bookstore.app.repository.BookRepository
 import com.bookstore.app.service.BookService
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,22 +14,25 @@ class BookServiceImpl() : BookService {
     @Autowired
     private lateinit var bookRepository: BookRepository
 
+    @Autowired
+    private lateinit var bookMapper: BookMapper
+
     override fun getAllBooks(): List<BookDto> {
         val bookDtoList: MutableList<BookDto> = mutableListOf()
         val bookList = bookRepository.findAll()
         for (book: Book in bookList) {
-            bookDtoList.add(book.toBookDto())
+            bookDtoList.add(bookMapper.bookToBookDto(book))
         }
         return bookDtoList
     }
 
     override fun getBookById(bookId: Int): BookDto {
         val book = bookRepository.findById(bookId).get()
-        return book.toBookDto()
+        return bookMapper.bookToBookDto(book)
     }
 
     override fun addBook(bookDto: BookDto): String {
-        val book = bookDto.toBookEntity()
+        val book = bookMapper.bookDtoToBook(bookDto)
         bookRepository.save(book)
         return "Book added successfully!"
     }
@@ -44,23 +46,4 @@ class BookServiceImpl() : BookService {
             "Book does not exists!"
     }
 
-    fun Book.toBookDto() = BookDto(
-        id = id,
-        name = name,
-        numberOfPages = numberOfPages,
-        quantity = quantity,
-        price = price,
-        category = category,
-        author = AuthorDto() // check this because it misses data
-    )
-
-    fun BookDto.toBookEntity() = Book(
-        id = id,
-        name = name,
-        numberOfPages = numberOfPages,
-        quantity = quantity,
-        price = price,
-        category = category,
-        author = Author()
-    )
 }

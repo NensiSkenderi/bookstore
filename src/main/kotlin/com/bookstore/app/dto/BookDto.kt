@@ -8,14 +8,16 @@ import lombok.Data
 
 @Data
 @AllArgsConstructor
-data class BookDto(
-    val id: Int,
-    val name: String,
+class BookDto {
+    var id: Int = 0
+    var name: String = ""
+
     @JsonProperty("page_number")
-    val numberOfPages: Int,
-    val quantity: Int,
-    val price: Double,
+    var numberOfPages: Int = 0
+    var quantity: Int = 0
+    var price: Double = 0.0
+
     @JsonIgnore
-    val category: BookCategory,
-    val author: AuthorDto
-)
+    var category: BookCategory? = null
+    var author: AuthorDto? = null
+}

@@ -6,10 +6,10 @@ import lombok.Data
 @Data
 @AllArgsConstructor
 data class AuthorDto(
-    val id: Int,
-    val firstName: String,
-    val lastName: String,
-    val book: List<BookDto> = listOf()
+    var id: Int,
+    var firstName: String,
+    var lastName: String,
+    var book: List<BookDto> = listOf()
 ) {
     constructor() : this(0, "", "")
 }

@@ -13,27 +13,27 @@ data class Book(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    val id: Int,
+    var id: Int,
 
     @Column(name = "name")
-    val name: String,
+    var name: String,
 
     @Column(name = "number_of_pages")
-    val numberOfPages: Int,
+    var numberOfPages: Int,
 
     @Column(name = "quantity")
-    val quantity: Int,
+    var quantity: Int,
 
     @Column(name = "price")
-    val price: Double,
+    var price: Double,
 
     @ManyToOne
     @JoinColumn(name = "book_category_id")
-    val category: BookCategory,
+    var category: BookCategory,
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    val author: Author
+    var author: Author
 
 ) {
     constructor() : this(
