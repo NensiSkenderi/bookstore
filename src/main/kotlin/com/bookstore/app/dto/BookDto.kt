@@ -1,7 +1,5 @@
 package com.bookstore.app.dto
 
-import com.bookstore.app.entity.BookCategory
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import lombok.AllArgsConstructor
 import lombok.Data
@@ -17,7 +15,6 @@ class BookDto {
     var quantity: Int = 0
     var price: Double = 0.0
 
-    @JsonIgnore
-    var category: BookCategory? = null
+    var category: BookCategoryDto? = null
     var author: AuthorDto? = null
 }

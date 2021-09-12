@@ -21,18 +21,18 @@ class BookServiceImpl() : BookService {
         val bookDtoList: MutableList<BookDto> = mutableListOf()
         val bookList = bookRepository.findAll()
         for (book: Book in bookList) {
-            bookDtoList.add(bookMapper.bookToBookDto(book))
+            bookDtoList.add(bookMapper.toDto(book))
         }
         return bookDtoList
     }
 
     override fun getBookById(bookId: Int): BookDto {
         val book = bookRepository.findById(bookId).get()
-        return bookMapper.bookToBookDto(book)
+        return bookMapper.toDto(book)
     }
 
     override fun addBook(bookDto: BookDto): String {
-        val book = bookMapper.bookDtoToBook(bookDto)
+        val book = bookMapper.toEntity(bookDto)
         bookRepository.save(book)
         return "Book added successfully!"
     }
@@ -45,5 +45,4 @@ class BookServiceImpl() : BookService {
         } else
             "Book does not exists!"
     }
-
 }

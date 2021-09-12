@@ -4,7 +4,7 @@ import com.bookstore.app.dto.AuthorDto
 import com.bookstore.app.entity.Author
 
 interface AuthorMapper {
-    fun authorToAuthorDto(author: Author): AuthorDto
+    fun toDto(author: Author): AuthorDto
 
-    fun authorDtoToAuthor(authorDto: AuthorDto): Author
+    fun toEntity(authorDto: AuthorDto): Author
 }

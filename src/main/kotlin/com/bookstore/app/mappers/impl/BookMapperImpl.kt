@@ -1,20 +1,20 @@
 
 package com.bookstore.app.mappers.impl
 
-import com.bookstore.app.dto.AuthorDto
 import com.bookstore.app.dto.BookDto
-import com.bookstore.app.entity.Author
 import com.bookstore.app.entity.Book
 import com.bookstore.app.mappers.AuthorMapper
+import com.bookstore.app.mappers.BookCategoryMapper
 import com.bookstore.app.mappers.BookMapper
 import org.springframework.stereotype.Component
 
 @Component
 class BookMapperImpl(
-    val authorMapper: AuthorMapper
+    val authorMapper: AuthorMapper,
+    val bookCategoryMapper: BookCategoryMapper
 ) : BookMapper {
 
-    override fun bookToBookDto(book: Book): BookDto {
+    override fun toDto(book: Book): BookDto {
         if (book == null)
             return book
 
@@ -22,25 +22,25 @@ class BookMapperImpl(
         bookDto.apply {
             id = book.id
             name = book.name
-            author = authorMapper.authorToAuthorDto(book.author)
+            numberOfPages = book.numberOfPages
+            author = authorMapper.toDto(book.author)
             quantity = book.quantity
             price = book.price
-            numberOfPages = numberOfPages
+            category = bookCategoryMapper.toDto(book.category)
         }
         return bookDto
     }
 
-    override fun bookDtoToBook(bookDto: BookDto): Book {
-        if (bookDto == null)
-            return bookDto
-
+    override fun toEntity(bookDto: BookDto): Book {
         val book = Book()
         book.apply {
             id = bookDto.id
             name = bookDto.name
-            author = bookDto.author?.let { authorMapper.authorDtoToAuthor(it) }!!
+            numberOfPages = bookDto.numberOfPages
+            author = bookDto.author?.let { authorMapper.toEntity(it) }!!
             quantity = bookDto.quantity
             price = bookDto.price
+            category = bookDto.category?.let { bookCategoryMapper.toEntity(it) }!!
         }
         return book
     }

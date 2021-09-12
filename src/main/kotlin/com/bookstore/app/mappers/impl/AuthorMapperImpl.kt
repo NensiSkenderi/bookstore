@@ -2,17 +2,14 @@
 package com.bookstore.app.mappers.impl
 
 import com.bookstore.app.dto.AuthorDto
-import com.bookstore.app.dto.BookDto
 import com.bookstore.app.entity.Author
-import com.bookstore.app.entity.Book
 import com.bookstore.app.mappers.AuthorMapper
-import com.bookstore.app.mappers.BookMapper
 import org.springframework.stereotype.Component
 
 @Component
 class AuthorMapperImpl : AuthorMapper {
 
-    override fun authorToAuthorDto(author: Author): AuthorDto {
+    override fun toDto(author: Author): AuthorDto {
         if (author == null) {
             return AuthorDto()
         }
@@ -26,11 +23,7 @@ class AuthorMapperImpl : AuthorMapper {
         return authorDto
     }
 
-    override fun authorDtoToAuthor(authorDto: AuthorDto): Author {
-        if (authorDto == null) {
-            return authorDto
-        }
-
+    override fun toEntity(authorDto: AuthorDto): Author {
         val author = Author()
         author.apply {
             id = authorDto.id
@@ -39,5 +32,4 @@ class AuthorMapperImpl : AuthorMapper {
         }
         return author
     }
-
 }

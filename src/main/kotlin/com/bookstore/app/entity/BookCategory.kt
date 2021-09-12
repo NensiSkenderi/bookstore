@@ -13,13 +13,13 @@ data class BookCategory(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    val id: Int,
+    var id: Int,
 
     @Column(name = "name")
-    val name: String,
+    var name: String,
 
     @OneToMany(mappedBy = "category")
-    val book: List<Book> = listOf()
+    var book: List<Book> = listOf()
 ) {
     constructor() : this(0, "")
 }
