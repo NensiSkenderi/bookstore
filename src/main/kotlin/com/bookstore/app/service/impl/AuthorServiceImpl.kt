@@ -47,5 +47,24 @@ class AuthorServiceImpl(
         return authorDtoList
     }
 
+    override fun deleteAuthorById(id: Int): String {
+        //here check if any book is connected with this author
+        if(checkIfBookConnectedWithAuthor(id))
+            return "There are books associated with this author, can't be deleted!";
+        val exists: Boolean = authorRepository.existsById(id)
+        return if (exists) {
+            authorRepository.deleteById(id)
+            "Author deleted successfully!"
+        } else
+            "Author does not exists!"
+    }
+
+    fun checkIfBookConnectedWithAuthor(authorId: Int): Boolean{
+        val author = authorRepository.findById(authorId).orElse(null)
+        val booksByAuthor = bookRepository.findAllByAuthor(author)
+        if(booksByAuthor.isNotEmpty())
+            return true
+        return false
+    }
 
 }

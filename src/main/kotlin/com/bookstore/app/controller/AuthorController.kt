@@ -39,8 +39,8 @@ class AuthorController {
 //        return authorService.add(bookDto)
 //    }
 //
-//    @DeleteMapping("books/{id}")
-//    fun deleteAuthor(@PathVariable id: Int): String {
-//        return bookService.deleteBookById(id)
-//    }
+    @DeleteMapping("authors/{id}")
+    fun deleteAuthor(@PathVariable id: Int): String {
+        return authorService.deleteAuthorById(id)
+    }
 }

@@ -7,4 +7,5 @@ interface AuthorService {
     fun getBooksByAuthor(lastName: String): List<BookDto>
     fun getAuthorById(authorId: Int): AuthorDto
     fun getAllAuthors(): List<AuthorDto>
+    fun deleteAuthorById(id: Int): String
 }
