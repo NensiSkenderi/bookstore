@@ -5,8 +5,10 @@ import com.bookstore.app.entity.User
 import com.bookstore.app.repository.UserRepository
 import com.bookstore.app.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
 
-class UserServiceImpl() : UserService {
+@Service
+class UserServiceImpl : UserService {
 
     @Autowired
     private lateinit var userRepository: UserRepository
