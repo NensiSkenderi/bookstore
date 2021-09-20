@@ -37,12 +37,18 @@ class UserServiceImpl : UserService {
             "User does not exists!"
     }
 
+    override fun getUserByUsername(username: String): UserDto {
+        val user = userRepository.findUserByUsername(username)
+        return user.toUserDto()
+    }
+
     private fun User.toUserDto() = UserDto(
         id = id,
         username = username,
         firstName = firstName,
         lastName = lastName,
         email = email,
+        role = role,
         isAdmin = isAdmin,
         password = password
     )
@@ -53,6 +59,7 @@ class UserServiceImpl : UserService {
         firstName = firstName,
         lastName = lastName,
         email = email,
+        role = role,
         isAdmin = isAdmin,
         password = password
     )

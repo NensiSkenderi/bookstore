@@ -27,6 +27,9 @@ data class User(
     @Column(name = "password", nullable = false, length = 60)
     val password: String = "",
 
+    @Column(name = "role", nullable = false, length = 60)
+    val role: String = "",
+
     @Column(name = "is_admin", nullable = false)
     val isAdmin: Boolean = false,
 

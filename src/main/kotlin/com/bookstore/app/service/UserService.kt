@@ -6,4 +6,5 @@ interface UserService {
     fun getUserById(userId: Int): UserDto
     fun addUser(userDto: UserDto, isAdmin: Boolean): String
     fun deleteUserById(userId: Int): String
+    fun getUserByUsername(username: String): UserDto
 }

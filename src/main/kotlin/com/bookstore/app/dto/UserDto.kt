@@ -14,6 +14,7 @@ data class UserDto(
     val firstName: String,
     val lastName: String?,
     val email: String,
+    val role: String,
     val password: String,
     val isAdmin: Boolean,
     @field:JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM")
