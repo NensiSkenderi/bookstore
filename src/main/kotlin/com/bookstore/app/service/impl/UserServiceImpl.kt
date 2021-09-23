@@ -5,6 +5,7 @@ import com.bookstore.app.entity.User
 import com.bookstore.app.repository.UserRepository
 import com.bookstore.app.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
@@ -18,12 +19,15 @@ class UserServiceImpl : UserService {
         return user.toUserDto()
     }
 
-    override fun addUser(userDto: UserDto, isUserAdmin: Boolean): String {
+    override fun addUser(userDto: UserDto, isUserAdmin: Int): String {
         val userExists: Boolean = userRepository.existsUserByUsername(username = userDto.username)
         if (userExists)
             return "User already exists!"
         userDto.copy(isAdmin = isUserAdmin)
         val user = userDto.toUserEntity()
+        user.apply {
+            this.password = BCryptPasswordEncoder().encode(userDto.password)
+        }
         userRepository.save(user)
         return "User added successfully!"
     }

@@ -32,11 +32,9 @@ class WebSecurityConfig: WebSecurityConfigurerAdapter() {
 
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
-        http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and().authorizeRequests().antMatchers("/oauth/token")
-            .permitAll().anyRequest().authenticated()
-//            .and()
-//            .authorizeRequests().antMatchers(HttpMethod.GET, "/user").hasRole("ADMIN")
+        http
+            .authorizeRequests()
+            .antMatchers("/**").permitAll();
     }
 
     //We use the defined BCryptPasswordEncoder bean for password encoding
