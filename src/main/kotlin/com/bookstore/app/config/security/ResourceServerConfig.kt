@@ -27,7 +27,7 @@ class ResourceServerConfig: ResourceServerConfigurerAdapter() {
                 .anyRequest().access(SECURED_READ_SCOPE);*/
         http
             .authorizeRequests()
-            .antMatchers("/user","/register").permitAll()
+            .antMatchers("/user/**").permitAll()
             .anyRequest().authenticated()
     }
 }
