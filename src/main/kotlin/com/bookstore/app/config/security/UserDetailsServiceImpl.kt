@@ -19,7 +19,7 @@ class UserDetailsServiceImpl: UserDetailsService {
 
     override fun loadUserByUsername(username: String): UserDetails {
         val userDto = userService.getUserByUsername(username)
-        val authority: GrantedAuthority = SimpleGrantedAuthority(userDto.role)
+        val authority: GrantedAuthority = SimpleGrantedAuthority(userDto.role.name)
         return User(userDto.username, userDto.password, listOf(authority))
     }
 }

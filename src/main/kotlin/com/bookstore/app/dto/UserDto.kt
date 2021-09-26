@@ -1,5 +1,6 @@
 package com.bookstore.app.dto
 
+import com.bookstore.app.entity.Role
 import com.fasterxml.jackson.annotation.JsonFormat
 import lombok.AllArgsConstructor
 import lombok.Data
@@ -14,9 +15,8 @@ data class UserDto(
     val firstName: String,
     val lastName: String?,
     val email: String,
-    val role: String,
+    val role: Role,
     val password: String,
-    val isAdmin: Int,
-    @field:JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM")
+    @field:JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     val createdAt: LocalDate = LocalDate.now()
 )

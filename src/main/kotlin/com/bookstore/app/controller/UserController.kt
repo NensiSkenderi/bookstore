@@ -1,8 +1,6 @@
 package com.bookstore.app.controller
 
-import com.bookstore.app.dto.BookDto
 import com.bookstore.app.dto.UserDto
-import com.bookstore.app.service.BookService
 import com.bookstore.app.service.UserService
 import io.swagger.annotations.Api
 import org.springframework.beans.factory.annotation.Autowired
@@ -21,13 +19,13 @@ class UserController {
         return userService.getUserById(id)
     }
 
-    @PostMapping("user")
+    @PostMapping("addUser")
     fun addUser(@RequestBody @Valid userDto: UserDto): String {
         return userService.addUser(userDto, 0)
     }
 
-//    @DeleteMapping("books/{id}")
-//    fun deleteBook(@PathVariable id: Int): String {
-//        return bookService.deleteBookById(id)
-//    }
+    @DeleteMapping("user/{id}")
+    fun deleteUser(@PathVariable id: Int): String {
+        return userService.deleteUserById(id)
+    }
 }

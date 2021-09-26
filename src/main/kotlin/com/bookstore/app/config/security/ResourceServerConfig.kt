@@ -21,13 +21,9 @@ class ResourceServerConfig: ResourceServerConfigurerAdapter() {
 
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
-        /*http.requestMatchers()
-                .antMatchers(SECURED_PATTERN).and().authorizeRequests()
-                .antMatchers(HttpMethod.POST, SECURED_PATTERN).access(SECURED_WRITE_SCOPE)
-                .anyRequest().access(SECURED_READ_SCOPE);*/
         http
             .authorizeRequests()
-            .antMatchers("/user/**").permitAll()
+            .antMatchers("/addUser").permitAll()
             .anyRequest().authenticated()
     }
 }

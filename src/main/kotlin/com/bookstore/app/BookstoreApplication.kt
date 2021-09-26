@@ -10,9 +10,4 @@ class BookstoreApplication
 
 fun main(args: Array<String>) {
     SpringApplication.run(BookstoreApplication::class.java, *args)
-
-    val passwordEncoder = BCryptPasswordEncoder()
-    val password = "secret"
-    val encodedPassword = passwordEncoder.encode(password)
-
 }

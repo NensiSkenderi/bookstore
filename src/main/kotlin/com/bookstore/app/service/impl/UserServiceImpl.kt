@@ -23,7 +23,6 @@ class UserServiceImpl : UserService {
         val userExists: Boolean = userRepository.existsUserByUsername(username = userDto.username)
         if (userExists)
             return "User already exists!"
-        userDto.copy(isAdmin = isUserAdmin)
         val user = userDto.toUserEntity()
         user.apply {
             this.password = BCryptPasswordEncoder().encode(userDto.password)
@@ -53,7 +52,6 @@ class UserServiceImpl : UserService {
         lastName = lastName,
         email = email,
         role = role,
-        isAdmin = isAdmin,
         password = password
     )
 
@@ -64,7 +62,6 @@ class UserServiceImpl : UserService {
         lastName = lastName,
         email = email,
         role = role,
-        isAdmin = isAdmin,
         password = password
     )
 }

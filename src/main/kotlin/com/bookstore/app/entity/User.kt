@@ -2,6 +2,7 @@ package com.bookstore.app.entity
 
 import lombok.Data
 import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
@@ -15,10 +16,10 @@ data class User(
     @Column(name = "username", nullable = false)
     val username: String = "",
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     val firstName: String = "",
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = true)
     val lastName: String? = "",
 
     @Column(name = "email", nullable = false)
@@ -27,12 +28,13 @@ data class User(
     @Column(name = "password", nullable = false, length = 60)
     var password: String = "",
 
-    @Column(name = "role", nullable = false, length = 60)
-    val role: String = "",
-
-    @Column(name = "is_admin", nullable = false)
-    val isAdmin: Int = 0,
+    @Enumerated(EnumType.STRING)
+    val role: Role = Role.USER,
 
     @Column(name = "created_at")
-    val createdAt: LocalDate = LocalDate.now()
+    val createdAt: LocalDateTime = LocalDateTime.now()
 )
+
+
+
+
