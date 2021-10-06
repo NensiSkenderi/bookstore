@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.bookstore.app</groupId>
     <artifactId>bookstore</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.1-0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -114,6 +114,16 @@
             </plugin>
         </plugins>
     </build>
-
-
+    <distributionManagement>
+        <snapshotRepository>
+            <id>testtest</id> <!-- must be same as server settings.xml
+            and we should edit ${MVN_HOME}/conf/settings.xml instead of
+            /home/{user}/.m2/settings.xml -->
+            <url>http://localhost:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>testtest</id>
+            <url>http://localhost:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
 </project>
