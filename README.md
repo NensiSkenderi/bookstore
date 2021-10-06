@@ -15,6 +15,7 @@ A backend bookstore application developed in Kotlin and Spring Boot
   * MySQL
   * Maven
   * Ktlint formatter (maven plugin and dependency)
+  * NEXUS Repository Manager
 
 ## Contact 
 Nensi Skenderi - nensiskenderi20@gmail.com
