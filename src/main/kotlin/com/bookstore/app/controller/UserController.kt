@@ -21,7 +21,7 @@ class UserController {
 
     @PostMapping("addUser")
     fun addUser(@RequestBody @Valid userDto: UserDto): String {
-        return userService.addUser(userDto, 0)
+        return userService.addUser(userDto)
     }
 
     @DeleteMapping("user/{id}")

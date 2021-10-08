@@ -1,39 +1,46 @@
 package com.bookstore.app.entity
 
-import lombok.Data
-import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
 @Table(name = "user")
-@Data
-data class User(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+open class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    val id: Int = 0,
+    var id = 0
 
-    @Column(name = "username", nullable = false)
-    val username: String = "",
+    @Column(name = "email")
+    var email: String = ""
 
-    @Column(name = "first_name", nullable = false)
-    val firstName: String = "",
+    @Column(name = "username")
+    var username: String = ""
 
-    @Column(name = "last_name", nullable = true)
-    val lastName: String? = "",
+    @Column(name = "password")
+    open var passw: String = ""
 
-    @Column(name = "email", nullable = false)
-    val email: String = "",
+    @Column(name = "first_name")
+    var firstName: String = ""
 
-    @Column(name = "password", nullable = false, length = 60)
-    var password: String = "",
+    @Column(name = "last_name")
+    var lastName: String = ""
 
-    @Enumerated(EnumType.STRING)
-    val role: Role = Role.USER,
+    @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "user_role",
+        joinColumns = [JoinColumn(name = "user_id")],
+        inverseJoinColumns = [JoinColumn(name = "role_id")]
+    )
+    var roles: Set<Role>? = null
 
-    @Column(name = "created_at")
-    val createdAt: LocalDateTime = LocalDateTime.now()
-)
-
-
-
-
+    constructor() {}
+    constructor(user: User) {
+        id = user.id
+        email = user.email
+        lastName = user.lastName
+        username = user.username
+        passw = user.passw
+        roles = user.roles
+        firstName = user.firstName
+    }
+}

@@ -15,7 +15,7 @@ data class UserDto(
     val firstName: String,
     val lastName: String?,
     val email: String,
-    val role: Role,
+    var role: String,
     val password: String,
     @field:JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     val createdAt: LocalDate = LocalDate.now()

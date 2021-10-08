@@ -1,6 +1,7 @@
 package com.bookstore.app.service.impl
 
 import com.bookstore.app.dto.UserDto
+import com.bookstore.app.entity.Role
 import com.bookstore.app.entity.User
 import com.bookstore.app.repository.UserRepository
 import com.bookstore.app.service.UserService
@@ -19,13 +20,13 @@ class UserServiceImpl : UserService {
         return user.toUserDto()
     }
 
-    override fun addUser(userDto: UserDto, isUserAdmin: Int): String {
+    override fun addUser(userDto: UserDto): String {
         val userExists: Boolean = userRepository.existsUserByUsername(username = userDto.username)
         if (userExists)
             return "User already exists!"
         val user = userDto.toUserEntity()
         user.apply {
-            this.password = BCryptPasswordEncoder().encode(userDto.password)
+            this.passw = BCryptPasswordEncoder().encode(userDto.password)
         }
         userRepository.save(user)
         return "User added successfully!"
@@ -41,8 +42,7 @@ class UserServiceImpl : UserService {
     }
 
     override fun getUserByUsername(username: String): UserDto {
-        val user = userRepository.findUserByUsername(username)
-        return user.toUserDto()
+        return userRepository.findByUsername(username).toUserDto()
     }
 
     private fun User.toUserDto() = UserDto(
@@ -51,17 +51,17 @@ class UserServiceImpl : UserService {
         firstName = firstName,
         lastName = lastName,
         email = email,
-        role = role,
-        password = password
+        role = Role().role.toString(),
+        password = passw
     )
 
-    private fun UserDto.toUserEntity() = User(
-        id = id,
-        username = username,
-        firstName = firstName,
-        lastName = lastName,
-        email = email,
-        role = role,
-        password = password
-    )
+    private fun UserDto.toUserEntity() = User().apply {
+        id = id
+        username = username
+        email = email
+        passw = password
+        firstName = firstName
+        lastName = lastName
+        role = roles.toString()
+    }
 }

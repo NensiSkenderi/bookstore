@@ -1,25 +1,19 @@
 package com.bookstore.app.config.security
 
-import com.bookstore.app.dto.UserDto
-import com.bookstore.app.service.UserService
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.security.core.GrantedAuthority
-import org.springframework.security.core.authority.SimpleGrantedAuthority
-import org.springframework.security.core.userdetails.User
+import com.bookstore.app.repository.UserRepository
+import com.bookstore.app.entity.CustomUserDetails
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
-class UserDetailsServiceImpl: UserDetailsService {
+class UserDetailsServiceImpl(private val usersRepository: UserRepository) : UserDetailsService {
 
-    @Autowired
-    private lateinit var userService: UserService
-
+    @Throws(UsernameNotFoundException::class)
     override fun loadUserByUsername(username: String): UserDetails {
-        val userDto = userService.getUserByUsername(username)
-        val authority: GrantedAuthority = SimpleGrantedAuthority(userDto.role.name)
-        return User(userDto.username, userDto.password, listOf(authority))
+        val user = usersRepository.findByUsername(username)
+        return CustomUserDetails(user);
     }
+
 }
