@@ -15,11 +15,6 @@ class AdminController {
     @Autowired
     private lateinit var userService: UserService
 
-    @PostMapping("addUser")
-    fun addUser(@RequestBody @Valid userDto: UserDto): String {
-        return userService.addUser(userDto)
-    }
-
     @DeleteMapping("user/{id}")
     fun deleteUser(@PathVariable id: Int): String {
         return userService.deleteUserById(id)

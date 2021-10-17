@@ -28,4 +28,10 @@ class UserController {
         else userService.getUserById(id)
     }
 
+    @PostMapping("addUser")
+    fun addUser(@RequestBody @Valid userDto: UserDto): String {
+        return userService.addUser(userDto)
+    }
+
+
 }

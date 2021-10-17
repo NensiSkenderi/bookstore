@@ -1,10 +1,13 @@
 package com.bookstore.app.service.impl
 
 import com.bookstore.app.dto.UserDto
+import com.bookstore.app.entity.ApplicationUserRole
 import com.bookstore.app.entity.User
 import com.bookstore.app.repository.UserRepository
 import com.bookstore.app.service.UserService
+import com.bookstore.app.utils.Helper
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
@@ -13,9 +16,6 @@ class UserServiceImpl : UserService {
 
     @Autowired
     private lateinit var userRepository: UserRepository
-
-    @Autowired
-    private lateinit var passwordEncoder: BCryptPasswordEncoder
 
     override fun getUserById(userId: Int): UserDto {
         val user = userRepository.findById(userId).get()
@@ -26,6 +26,8 @@ class UserServiceImpl : UserService {
         val userExists: Boolean = userRepository.existsUserByUsername(username = userDto.username)
         if (userExists)
             return "User already exists!"
+        if(!Helper.isAdmin())
+            userDto.role = ApplicationUserRole.USER.name
         val user = userDto.toUserEntity()
         user.apply {
             this.passw = BCryptPasswordEncoder().encode(userDto.password)
@@ -53,8 +55,8 @@ class UserServiceImpl : UserService {
         firstName = firstName,
         lastName = lastName,
         email = email,
-        role = role,
-        password = passw
+        password = passw,
+        role = role
     )
 
     private fun UserDto.toUserEntity() = User(

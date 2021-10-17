@@ -25,5 +25,5 @@ open class User(
     @Column(name = "last_name")
     var lastName: String? = "",
 
-    var role: String = ""
+    var role: String = ApplicationUserRole.USER.name
 )
