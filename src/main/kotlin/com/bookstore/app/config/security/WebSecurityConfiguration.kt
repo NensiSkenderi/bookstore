@@ -1,5 +1,6 @@
 package com.bookstore.app.config.security
 
+import com.bookstore.app.entity.ApplicationUserRole
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -37,13 +38,6 @@ class WebSecurityConfiguration(
 	@Throws(Exception::class)
 	override fun configure(auth: AuthenticationManagerBuilder) {
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder())
-	}
-
-	@Throws(Exception::class)
-	override fun configure(http: HttpSecurity) {
-		http
-			.authorizeRequests()
-			.antMatchers("/**").permitAll();
 	}
 
 	@Bean

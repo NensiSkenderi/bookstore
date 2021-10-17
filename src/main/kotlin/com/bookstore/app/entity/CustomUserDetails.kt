@@ -8,7 +8,7 @@ class CustomUserDetails(user: User) : UserDetails {
 	private val username: String = user.username
 	private val password: String = user.passw
 	private val authorities: Collection<out GrantedAuthority>
-	private val id: Int = user.id
+	val id: Int
 
 	companion object {
 		private val serialVersionUID = 1L
@@ -16,11 +16,12 @@ class CustomUserDetails(user: User) : UserDetails {
 
 	init {
 		this.authorities = translate(user)
+		this.id  = user.id
 	}
 
 	private fun translate(user: User): Collection<out GrantedAuthority> {
 		val authorities = ArrayList<GrantedAuthority>()
-		authorities.add(SimpleGrantedAuthority("ROLE_"+user.roles.toString()))
+		authorities.add(SimpleGrantedAuthority("ROLE_"+user.role))
 		return authorities
 	}
 
@@ -51,4 +52,5 @@ class CustomUserDetails(user: User) : UserDetails {
 	override fun isEnabled(): Boolean {
 		return true
 	}
+
 }

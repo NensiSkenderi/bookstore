@@ -1,7 +1,6 @@
 package com.bookstore.app.service.impl
 
 import com.bookstore.app.dto.UserDto
-import com.bookstore.app.entity.Role
 import com.bookstore.app.entity.User
 import com.bookstore.app.repository.UserRepository
 import com.bookstore.app.service.UserService
@@ -14,6 +13,9 @@ class UserServiceImpl : UserService {
 
     @Autowired
     private lateinit var userRepository: UserRepository
+
+    @Autowired
+    private lateinit var passwordEncoder: BCryptPasswordEncoder
 
     override fun getUserById(userId: Int): UserDto {
         val user = userRepository.findById(userId).get()
@@ -51,17 +53,17 @@ class UserServiceImpl : UserService {
         firstName = firstName,
         lastName = lastName,
         email = email,
-        role = Role().role.toString(),
+        role = role,
         password = passw
     )
 
-    private fun UserDto.toUserEntity() = User().apply {
-        id = id
-        username = username
-        email = email
-        passw = password
-        firstName = firstName
-        lastName = lastName
-        role = roles.toString()
-    }
+    private fun UserDto.toUserEntity() = User(
+        id = id,
+        username = username,
+        email = email,
+        passw = password,
+        firstName = firstName,
+        lastName = lastName,
+        role = role
+    )
 }

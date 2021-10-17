@@ -1,11 +1,9 @@
 package com.bookstore.app.dto
 
-import com.bookstore.app.entity.Role
 import com.fasterxml.jackson.annotation.JsonFormat
 import lombok.AllArgsConstructor
 import lombok.Data
 import java.time.LocalDate
-import java.util.*
 
 @Data
 @AllArgsConstructor
